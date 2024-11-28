@@ -1,0 +1,126 @@
+body{
+	background: #f6f5f7;
+}
+/* Reset default margin and padding */
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/* Basic header styles */
+header {
+    background-color: skyblue;
+    color: #333;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 24px;
+}
+
+nav ul {
+    list-style-type: none;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+footer {
+    background-color: skyblue;
+    color: #333;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+/* Like and Dislike button styles */
+.likes-dislikes {
+    display: flex;
+    gap: 10px; /* Add spacing between the buttons */
+    margin-top: 10px; /* Add space above the like/dislike buttons */
+
+    /* Center the .likes-dislikes div */
+    justify-content: center;
+    padding: 5px;
+}
+
+
+.likes-dislikes form {
+    margin: 0; /* Remove default form margin */
+}
+
+.likes-dislikes button {
+    padding: 8px 12px;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.likes-dislikes button:hover {
+    background-color: #2980b9;
+}
+
+/*Filter css*/
+
+/* Filter section styles */
+.filter {
+    background-color: #f1f1f1; /* Light background color for the filter section */
+    padding: 15px; /* Padding around the filter section */
+    border-radius: 8px; /* Rounded corners for a softer look */
+    margin: 20px 0; /* Space above and below the filter section */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    width: 300px;
+}
+
+.filter form {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Align items vertically in the center */
+}
+
+.filter label {
+    margin-right: 10px; /* Space between label and select dropdown */
+    font-weight: bold; /* Make the label text bold */
+}
+
+.filter select {
+    padding: 8px; /* Space inside the select dropdown */
+    border: 1px solid #ccc; /* Border color */
+    border-radius: 4px; /* Rounded corners for the dropdown */
+    margin-right: 10px; /* Space between dropdown and button */
+}
+
+.filter button {
+    padding: 8px 16px; /* Space inside the button */
+    background-color: #007bff; /* Primary button color */
+    color: white; /* Text color */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners for the button */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+.filter button:hover {
+    background-color: #0056b3; /* Darker color on hover */
+}

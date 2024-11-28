@@ -1,0 +1,60 @@
+.add-post-form {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add-post-form h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.add-post-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+}
+
+.add-post-form input[type="text"],
+.add-post-form textarea,
+.add-post-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    color: #333;
+    background-color: #fff;
+}
+
+.add-post-form textarea {
+    resize: vertical;
+    min-height: 150px;
+}
+
+.add-post-form button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #5cb85c;
+    color: #fff;
+    font-size: 18px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.add-post-form button[type="submit"]:hover {
+    background-color: #4cae4c;
+}
+#MyForm{ margin-top: 5%;}

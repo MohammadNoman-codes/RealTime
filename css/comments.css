@@ -1,0 +1,114 @@
+/* Main content styles */
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Comments section */
+.comments {
+    margin-bottom: 40px;
+}
+
+.comment {
+    background-color: #f1f1f1;
+    margin-bottom: 20px; /* Add spacing between comments */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comment p {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+.comment small {
+    font-size: 12px;
+    color: #777;
+}
+
+/* Like and Dislike button styles */
+.likes-dislikes {
+    display: flex;
+    gap: 10px; /* Add spacing between the buttons */
+    margin-top: 10px; /* Add space above the like/dislike buttons */
+}
+
+.likes-dislikes form {
+    margin: 0; /* Remove default form margin */
+}
+
+.likes-dislikes button {
+    padding: 8px 12px;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.likes-dislikes button:hover {
+    background-color: #2980b9;
+}
+
+/* Add comment section */
+.add-comment {
+    background-color: #ffffff;
+    padding: 20px;
+    margin-top: 20px; /* Space above the add comment section */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.add-comment h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: #333;
+}
+
+.add-comment form {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-comment textarea {
+    resize: none;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.add-comment button {
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.add-comment button:hover {
+    background-color: #2980b9;
+}
+
+/* Footer styles */
+footer {
+    text-align: center;
+    margin-top: 40px;
+    font-size: 14px;
+    color: #777;
+}

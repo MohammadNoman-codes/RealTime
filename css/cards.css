@@ -1,0 +1,42 @@
+.cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center cards horizontally */
+    padding: 20px;
+}
+
+.card {
+    background-color: #f0f0f0;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3); /* Darker shadow */
+    width: 60%;
+    max-width: 600px;
+    text-align: center;
+    margin-bottom: 20px; /* Space between cards */
+}
+
+.card h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.card p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.card .read-more {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+.card .read-more:hover {
+    background-color: #0056b3;
+}

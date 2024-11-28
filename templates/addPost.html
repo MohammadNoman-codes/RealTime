@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Post</title>
+    <link rel="stylesheet" href="../css/homepage.css">
+    <link rel="stylesheet" href="../css/cards.css"> 
+    <link rel="stylesheet" href="../css/postForm.css">
+
+    <style>
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            display: none;
+        }
+    </style>
+
+    <script>
+        function validateTitle() {
+            var titleField = document.getElementById("title");
+            var titleError = document.getElementById("titleError");
+
+            if (titleField.value.trim() === "") {
+                titleError.style.display = "block";
+                titleField.focus();
+            } else {
+                titleError.style.display = "none";
+            }
+        }
+
+        function validateContent() {
+            var contentField = document.getElementById("content");
+            var contentError = document.getElementById("contentError");
+
+            if (contentField.value.trim() === "") {
+                contentError.style.display = "block";
+                contentField.focus();
+            } else {
+                contentError.style.display = "none";
+            }
+        }
+
+        function validateCategory() {
+            var categoryField = document.getElementById("category");
+            var categoryError = document.getElementById("categoryError");
+
+            if (categoryField.value.trim() === "") {
+                categoryError.style.display = "block";
+                categoryField.focus();
+            } else {
+                categoryError.style.display = "none";
+            }
+        }
+    </script>
+    
+</head>
+<body>
+    <header>
+        <h1>Mrfjm Forum</h1>
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/addpost">Add Post</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="add-post-form" id="MyForm">
+            <h2>Add a New Post</h2>
+            <form action="/addpost" method="post">
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title" onblur="validateTitle()" required>
+                <span id="titleError" class="error-message">Title cannot be empty!</span>
+                
+                <label for="content">Content:</label>
+                <textarea id="content" name="content" onblur="validateContent()" required></textarea>
+                <span id="contentError" class="error-message">Content cannot be empty!</span>
+
+                <label for="category">Category:</label>
+                <select id="category" name="category" required>
+                    <option value="sports">Sports</option>
+                    <option value="entertainment">Entertainment</option>
+                    <option value="food">Food</option>
+                    <option value="cars">Cars</option>
+                    <option value="technology">Technology</option>
+                    <option value="music">Music</option>
+                    <option value="travel">Travel</option>
+                </select>
+                
+                <button type="submit">Add Post</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mrfjm Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>

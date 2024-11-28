@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.PostTitle}} - Comments</title>
+    <link rel="stylesheet" href="../css/homepage.css">
+    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="../css/comments.css"> 
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var contentField = document.getElementById("content");
+            var contentError = document.getElementById("contentError");
+    
+            contentField.onblur = function() {
+                var trimmedContent = contentField.value.trim();
+                if (trimmedContent === "") {
+                    contentError.textContent = "Content cannot be empty!";
+                    contentError.style.color = "red";
+                    contentField.focus();
+                } else {
+                    contentError.textContent = ""; // Clear the error message if content is valid
+                }
+            };
+        });
+    </script>
+
+    
+</head>
+<body>
+    <header>
+        <h1>{{.PostTitle}} - Comments</h1>
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/addpost">Add Post</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="comments">
+            {{if .Comments}}
+                {{range .Comments}}
+                <div class="comment">
+                    <p>{{.Content}}</p>
+                    <small>Posted by {{.Username}} on {{.CreatedAt.Format "02 Jan 2006 15:04"}}</small>
+                    
+                    <div class="likes-dislikes">
+                        {{if .UserHasCLiked}}
+                        <form method="post" action="/comment/unlike">
+                            <input type="hidden" name="ID" value="{{.ID}}">
+                            <input type="hidden" name="post_id" value="{{$.PostID}}">
+                            <button type="submit">👍 Liked ({{.CLikes}})</button>
+                        </form>
+                        {{else}}
+                        <form method="post" action="/comment/like">
+                            <input type="hidden" name="ID" value="{{.ID}}">
+                            <input type="hidden" name="post_id" value="{{$.PostID}}">
+                            <button type="submit">👍 Like ({{.CLikes}})</button>
+                        </form>
+                        {{end}}
+
+                        {{if .UserHasCDisliked}}
+                        <form method="post" action="/comment/undislike">
+                            <input type="hidden" name="ID" value="{{.ID}}">
+                            <input type="hidden" name="post_id" value="{{$.PostID}}">
+                            <button type="submit">👎 Disliked ({{.CDislikes}})</button>
+                        </form>
+                        {{else}}
+                        <form method="post" action="/comment/dislike">
+                            <input type="hidden" name="ID" value="{{.ID}}">
+                            <input type="hidden" name="post_id" value="{{$.PostID}}">
+                            <button type="submit">👎 Dislike ({{.CDislikes}})</button>
+                        </form>
+                        {{end}}
+                    </div>
+                </div>
+                {{end}}
+            {{else}}
+                <p>No comments yet. Be the first to comment!</p>
+            {{end}}
+        </section>
+
+        <section class="add-comment">
+            <h2>Add a Comment</h2>
+            <form method="post" action="/addcomment">
+                <input type="hidden" name="post_id" value="{{.PostID}}">
+                <textarea id="content" name="content" rows="5" placeholder="Write your comment here..." required></textarea>
+                <div id="contentError" class="error-message"></div> <!-- Error message container -->
+                <button type="submit">Comment</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mrfjm Forum. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.Username}}'s Profile</title>
+    <link rel="stylesheet" href="/css/homepage.css">
+    <link rel="stylesheet" href="/css/profile.css">
+</head>
+<body>
+    <header>
+        <h1>Mrfjm Forum</h1>
+        <nav>
+            <ul>
+                <li><a href="/home">Home</a></li>
+                <li><a href="/addpost">Add Post</a></li>
+                <li><a href="/profile">Profile</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Your Posts:</h2>
+        <div class="posts-container">
+            {{if .Posts}}
+                {{range .Posts}}
+                    <div class="post-card">
+                        <h3>{{.Title}}</h3>
+                        <p>{{.Content}}</p>
+                    </div>
+                {{end}}
+            {{else}}
+                <p>You have no posts yet.</p>
+            {{end}}
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Mrfjm Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>

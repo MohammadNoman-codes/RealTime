@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mrfjm Forum</title>
+    <link rel="stylesheet" href="../css/homepage.css">
+    <link rel="stylesheet" href="../css/cards.css">
+    <script>
+        // JavaScript function to prevent form submission
+        function preventAction(event) {
+            event.preventDefault(); // Prevent the form from being submitted
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Mrfjm Forum</h1>
+        <nav>
+            <ul>
+                <li><a href="/guest">Home</a></li>
+                <li><a href="#">Add Post</a></li>
+                <li><a href="/">Sign Up</a></li>
+                <li><a href="/">Sign In</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="filter">
+            <form method="get" action="/guest">
+                <label for="category">Filter by Category:</label>
+                <select id="category" name="category">
+                    <option value="" {{if eq .SelectedCategory "" }}selected{{end}}>All</option>
+                    <option value="sports" {{if eq .SelectedCategory "sports" }}selected{{end}}>Sports</option>
+                    <option value="entertainment" {{if eq .SelectedCategory "entertainment" }}selected{{end}}>Entertainment</option>
+                    <option value="food" {{if eq .SelectedCategory "food" }}selected{{end}}>Food</option>
+                    <option value="cars" {{if eq .SelectedCategory "cars" }}selected{{end}}>Cars</option>
+                    <option value="technology" {{if eq .SelectedCategory "technology" }}selected{{end}}>Technology</option>
+                    <option value="music" {{if eq .SelectedCategory "music" }}selected{{end}}>Music</option>
+                    <option value="travel" {{if eq .SelectedCategory "travel" }}selected{{end}}>Travel</option>
+                </select>
+                <button type="submit">Apply Filter</button>
+            </form>
+        </section>
+
+        <section class="cards">
+            {{if .NoPosts}}
+            <p>No posts were found in the database.</p>
+            {{else}}
+            {{range .Posts}}
+            <div class="card">
+                <h2>{{.Title}}</h2>
+                <p>{{.Content}}</p>
+                <div class="likes-dislikes">
+                    <form method="post" action="#" onsubmit="preventAction(event)">
+                        <input type="hidden" name="post_id" value="{{.ID}}">
+                        <button type="submit">👍 Like ({{.LikesCount}})</button>
+                    </form>
+
+                    <form method="post" action="#" onsubmit="preventAction(event)">
+                        <input type="hidden" name="post_id" value="{{.ID}}">
+                        <button type="submit">👎 Dislike ({{.DislikesCount}})</button>
+                    </form>
+                </div>
+                <a href="/guestcomments?post_id={{.ID}}" class="read-more">Comments</a>
+            </div>
+            {{end}}
+            {{end}}
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mrfjm Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>

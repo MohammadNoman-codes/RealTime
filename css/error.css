@@ -1,0 +1,37 @@
+/* Inline CSS specific for error page */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 60vh;
+    text-align: center;
+    background-color: #f6f5f7;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 4rem;
+    color: #d9534f; /* Red for error */
+}
+
+p.error-message {
+    font-size: 1.5rem;
+    color: #333;
+    margin-top: 20px;
+}
+
+a.back-home {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    color: white;
+    background-color: #007bff; /* Blue button */
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+a.back-home:hover {
+    background-color: #0056b3;
+}

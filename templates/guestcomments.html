@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{.PostTitle}} - Comments</title>
+    <link rel="stylesheet" href="../css/homepage.css">
+    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="../css/comments.css"> 
+</head>
+<body>
+    <header>
+        <h1>Mrfjm Forum</h1>
+        <nav>
+            <ul>
+                <li><a href="/guest">Home</a></li>
+                <li><a href="#">Add Post</a></li>
+                <li><a href="/">Sign Up</a></li>
+                <li><a href="/">Sign In</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="comments">
+            {{if .Comments}}
+                {{range .Comments}}
+                <div class="comment">
+                    <p>{{.Content}}</p>
+                    <small>Posted by {{.Username}} on {{.CreatedAt.Format "02 Jan 2006 15:04"}}</small>
+                    <div class="likes-dislikes">
+                        <form method="post" action="#" onsubmit="preventAction(event)">
+                            <input type="hidden" name="comment_id" value="{{.ID}}">
+                            <button type="submit">👍 Like ({{.CLikes}})</button>
+                        </form>
+    
+                        <form method="post" action="#" onsubmit="preventAction(event)">
+                            <input type="hidden" name="comment_id" value="{{.ID}}">
+                            <button type="submit">👎 Dislike ({{.CDislikes}})</button>
+                        </form>
+                    </div>
+                </div>
+                {{end}}
+            {{else}}
+                <p>No comments yet. Be the first to comment!</p>
+            {{end}}
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Mrfjm Website. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function preventAction(event) {
+            event.preventDefault();
+            // Additional logic to handle likes/dislikes without refreshing the page
+        }
+    </script>
+</body>
+</html>
