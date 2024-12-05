@@ -2,9 +2,9 @@ package handlers
 
 import (
 	"database/sql"
+	"encoding/json"
 	"fmt"
 	"forum/models"
-	"html/template"
 	"log"
 	"net/http"
 
@@ -12,14 +12,19 @@ import (
 )
 
 type Post struct {
-	ID              int
-	Title           string
-	Content         string
-	Category        string
-	LikesCount      int
-	DislikesCount   int
-	UserHasLiked    bool
-	UserHasDisliked bool
+	ID              int    `json:"id"`
+	Title           string `json:"title"`
+	Content         string `json:"content"`
+	Category        string `json:"category"`
+	LikesCount      int    `json:"likes_count"`
+	DislikesCount   int    `json:"dislikes_count"`
+	UserHasLiked    bool   `json:"user_has_liked"`
+	UserHasDisliked bool   `json:"user_has_disliked"`
+}
+
+type Response struct {
+	Message string `json:"message"`
+	Posts   []Post `json:"posts,omitempty"`
 }
 
 // FetchPosts fetches posts based on the selected category.
@@ -86,67 +91,50 @@ func FetchPosts(userID int, category string) ([]Post, error) {
 	return posts, nil
 }
 
-//This is what we have to do when we have to work for a project
-//This is not what I have signed up for
-// Come on we need to finish this
-// I am done with coding 
-// I dont want to do this 
-
-
 func HomePageHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method != http.MethodGet {
+	if r.Method != http.MethodPost {
 		http.Error(w, "405: Method Not Allowed", http.StatusMethodNotAllowed)
 		return
 	}
 
-	if r.URL.Path != "/home" {
-		t, err := template.ParseFiles("templates/error.html")
-		if err != nil {
-			http.Error(w, "500: Internal Server Error", http.StatusInternalServerError)
-			return
-		}
-		t.Execute(w, nil)
-		return
+	// Decode the JSON request body into a map
+	var request struct {
+		Category string `json:"category"`
 	}
-
-	category := r.URL.Query().Get("category")
-
-	t, err := template.ParseFiles("templates/homePage.html")
+	decoder := json.NewDecoder(r.Body)
+	err := decoder.Decode(&request)
 	if err != nil {
-		http.Error(w, "500: Internal Server Error", http.StatusInternalServerError)
+		http.Error(w, fmt.Sprintf("Invalid JSON format: %v", err), http.StatusBadRequest)
 		return
 	}
 
+	// Retrieve the userID from the session
 	userID, err := models.GetUserIDFromSession(r)
 	if err != nil {
 		http.Error(w, "Please log in to view posts", http.StatusUnauthorized)
 		return
 	}
 
-	posts, err := FetchPosts(userID, category)
+	// Fetch posts based on the category
+	posts, err := FetchPosts(userID, "")
 	if err != nil {
 		http.Error(w, "500: Internal Server Error", http.StatusInternalServerError)
 		return
 	}
 
-	data := map[string]interface{}{
-		"Posts":            posts,
-		"SelectedCategory": category,
+	// Prepare the response
+	var response Response
+	if len(posts) > 0 {
+		response.Message = "Posts fetched successfully"
+		response.Posts = posts
+	} else {
+		response.Message = "No posts available"
 	}
 
-	if len(posts) == 0 {
-		data["NoPosts"] = true
-	}
-
-	//This is when we excetute the things
-	//I am almost done with this
-	//I am almost done with this
-	// Please we need to finish this
-	// I am done with campus
-	// Please I need to go home
-	err = t.Execute(w, data)
+	// Set response header and encode the response to JSON
+	w.Header().Set("Content-Type", "application/json")
+	err = json.NewEncoder(w).Encode(response)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
+		http.Error(w, "Error encoding response", http.StatusInternalServerError)
 	}
 }
